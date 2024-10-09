@@ -6,7 +6,6 @@
     <meta name="description" content="Modern and sleek online calculator for basic arithmetic operations.">
     <meta name="keywords" content="modern calculator, stylish calculator, online arithmetic, free calculator">
     <title>Modern Calculator | Sleek Design Arithmetic Tool</title>
-    <meta name="google-site-verification" content="XDm3dzU8E20UjxI367AeDN1afc4ynXQNqBfBHEtAcFM" />
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -20,10 +19,20 @@
             padding: 20px;
         }
 
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
         h1 {
-            margin-bottom: 20px;
             color: #333;
             font-size: 2rem;
+        }
+
+        p {
+            color: #555;
+            font-size: 1.2rem;
+            max-width: 600px;
         }
 
         .calculator {
@@ -154,56 +163,58 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <header>
         <h1>Modern Online Calculator</h1>
-        <div class="calculator">
-            <input type="text" id="display" disabled>
-            <div class="buttons">
-                <button class="clear" onclick="clearDisplay()">C</button>
-                <button onclick="deleteLast()">DEL</button>
-                <button onclick="appendOperator('/')">/</button>
-                <button onclick="appendOperator('*')">*</button>
+        <p>Your quick and easy tool for basic arithmetic operations, including addition, subtraction, multiplication, and division. Get accurate results instantly!</p>
+    </header>
+    
+    <div class="calculator">
+        <input type="text" id="display" disabled>
+        <div class="buttons">
+            <button class="clear" onclick="clearDisplay()">C</button>
+            <button onclick="deleteLast()">DEL</button>
+            <button onclick="appendOperator('/')">/</button>
+            <button onclick="appendOperator('*')">*</button>
 
-                <button onclick="appendNumber(7)">7</button>
-                <button onclick="appendNumber(8)">8</button>
-                <button onclick="appendNumber(9)">9</button>
-                <button onclick="appendOperator('-')">-</button>
+            <button onclick="appendNumber(7)">7</button>
+            <button onclick="appendNumber(8)">8</button>
+            <button onclick="appendNumber(9)">9</button>
+            <button onclick="appendOperator('-')">-</button>
 
-                <button onclick="appendNumber(4)">4</button>
-                <button onclick="appendNumber(5)">5</button>
-                <button onclick="appendNumber(6)">6</button>
-                <button onclick="appendOperator('+')">+</button>
+            <button onclick="appendNumber(4)">4</button>
+            <button onclick="appendNumber(5)">5</button>
+            <button onclick="appendNumber(6)">6</button>
+            <button onclick="appendOperator('+')">+</button>
 
-                <button onclick="appendNumber(1)">1</button>
-                <button onclick="appendNumber(2)">2</button>
-                <button onclick="appendNumber(3)">3</button>
-                <button class="equal" onclick="calculate()">=</button>
+            <button onclick="appendNumber(1)">1</button>
+            <button onclick="appendNumber(2)">2</button>
+            <button onclick="appendNumber(3)">3</button>
+            <button class="equal" onclick="calculate()">=</button>
 
-                <button onclick="appendNumber(0)" style="grid-column: span 2">0</button>
-                <button onclick="appendDecimal()">.</button>
-            </div>
+            <button onclick="appendNumber(0)" style="grid-column: span 2">0</button>
+            <button onclick="appendDecimal()">.</button>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="faq">
+        <h2>Frequently Asked Questions (FAQ)</h2>
+
+        <div class="faq-item">
+            <h3 onclick="toggleFaq(1)">How does this calculator work?</h3>
+            <p id="faq1">This calculator uses basic arithmetic operations like addition, subtraction, multiplication, and division. Simply click the buttons or type the values, and hit "=" to see the result.</p>
         </div>
 
-        <!-- FAQ Section -->
-        <div class="faq">
-            <h2>Frequently Asked Questions (FAQ)</h2>
-
-            <div class="faq-item">
-                <h3 onclick="toggleFaq(1)">How does this calculator work?</h3>
-                <p id="faq1">This calculator uses basic arithmetic operations like addition, subtraction, multiplication, and division. Simply click the buttons or type the values, and hit "=" to see the result.</p>
-            </div>
-
-            <div class="faq-item">
-                <h3 onclick="toggleFaq(2)">Is this calculator mobile-friendly?</h3>
-                <p id="faq2">Yes! This calculator is fully responsive and works perfectly on mobile phones and tablets.</p>
-            </div>
-
-            <div class="faq-item">
-                <h3 onclick="toggleFaq(3)">Can I use decimals in the calculator?</h3>
-                <p id="faq3">Yes, you can use decimal points by clicking the "." button to perform operations involving fractions or non-integer values.</p>
-            </div>
-
+        <div class="faq-item">
+            <h3 onclick="toggleFaq(2)">Is this calculator mobile-friendly?</h3>
+            <p id="faq2">Yes! This calculator is fully responsive and works perfectly on mobile phones and tablets.</p>
         </div>
+
+        <div class="faq-item">
+            <h3 onclick="toggleFaq(3)">Can I use decimals in the calculator?</h3>
+            <p id="faq3">Yes, you can use decimal points by clicking the "." button to perform operations involving fractions or non-integer values.</p>
+        </div>
+
     </div>
 
     <script>
