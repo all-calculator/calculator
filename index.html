@@ -3,178 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Modern and sleek online calculator for basic arithmetic operations.">
-    <meta name="keywords" content="modern calculator, stylish calculator, online arithmetic, free calculator">
-    <title>Modern Calculator | Sleek Design Arithmetic Tool</title>
+    <meta name="description" content="Your Ultimate Online Calculator for all your calculation needs. Access a variety of functions with a user-friendly interface.">
+    <title>CalcPro - Your Ultimate Online Calculator</title>
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+       body {
+            font-family: Arial, sans-serif;
             margin: 0;
-            background-color: #f0f0f0;
-            padding: 20px;
+            padding: 0;
+            background: linear-gradient(135deg, #e2e2e2 0%, #ffffff 100%);
+            color: #333;
+            overflow-x: hidden;
         }
 
         header {
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+        }
+
+        header img {
+            height: 40px; /* Adjust logo height */
+            margin-right: 10px; /* Space between logo and title */
+        }
+		
+		/* Navigation Menu */
+        nav {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 20px; /* Space between navigation items */
+        }   
+
+        /* Hamburger Icon for Mobile */
+        .menu-icon {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: white;
+        }
+
+        .menu-icon span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px 0;
+        }
+
+        /* Overlay Menu (hidden initially) */
+        .overlay {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow-x: hidden;
+            transition: 0.5s;
+            z-index: 1010;
+        }
+
+        .overlay-content {
+            position: relative;
+            top: 50%;
+            width: 100%;
             text-align: center;
-            margin-bottom: 30px;
+            margin-top: 30px;
         }
 
-        h1 {
-            color: #333;
-            font-size: 2rem;
+        .overlay-content a {
+            padding: 8px;
+            text-decoration: none;
+            font-size: 30px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
         }
 
-        p {
-            color: #555;
-            font-size: 1.2rem;
-            max-width: 600px;
+        .overlay-content a:hover {
+            color: #f1f1f1;
+        }
+
+        /* Close Button for the Popup Menu */
+        .overlay .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 45px;
+            font-size: 40px;
+            color: #fff;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it stays above the overlay */
         }
 
         .calculator {
-            background-color: #fff;
+            margin: 20px auto;
             padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-            width: 100%;
             max-width: 400px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         #display {
-            width: 100%;
-            height: 60px;
-            margin-bottom: 20px;
+            width: 95%;
+            height: 50px;
+            font-size: 24px;
             text-align: right;
             padding: 10px;
-            font-size: 2rem;
-            border: none;
-            border-bottom: 2px solid #333;
-            background-color: #f9f9f9;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            margin-bottom: 10px;
         }
 
         .buttons {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-gap: 15px;
+            gap: 10px;
         }
 
         button {
             padding: 20px;
-            font-size: 1.5rem;
-            background-color: #333;
-            color: white;
-            border: none;
-            border-radius: 10px;
+            font-size: 18px;
             cursor: pointer;
-            transition: background-color 0.2s;
+            border: none;
+            border-radius: 5px;
+            background: #007bff;
+            color: white;
+            transition: background 0.3s;
         }
 
         button:hover {
-            background-color: #555;
+            background: #0056b3;
         }
 
-        button.action {
-            background-color: #f39c12;
+        .clear {
+            background: #dc3545;
         }
 
-        button.action:hover {
-            background-color: #e67e22;
+        .equal {
+            background: #28a745;
         }
 
-        button.equal {
-            background-color: #27ae60;
+        section {
+            max-width: 95%;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        button.equal:hover {
-            background-color: #2ecc71;
-        }
-
-        button.clear {
-            background-color: #e74c3c;
-        }
-
-        button.clear:hover {
-            background-color: #c0392b;
+        h2 {
+            color: #007bff;
         }
 
         .faq {
-            margin-top: 40px;
-            width: 100%;
-            max-width: 600px;
-        }
-
-        .faq h2 {
-            color: #333;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
+			max-width: 95%;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .faq-item {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            cursor: pointer;
         }
 
         .faq-item h3 {
-            font-size: 1.2rem;
-            color: #333;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-
-        .faq-item h3:hover {
-            color: #27ae60;
+            margin: 0;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border-radius: 5px;
         }
 
         .faq-item p {
-            margin-top: 10px;
-            font-size: 1rem;
-            color: #555;
-            display: none;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
         }
 
+        footer {
+            background: #007bff;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+		
+		
+		 
+
+         /* Media Queries */
         @media (max-width: 768px) {
-            .calculator {
-                width: 100%;
+            nav {
+                display: none;
             }
 
-            #display {
-                font-size: 1.6rem;
+            .menu-icon {
+                display: block;
             }
 
-            button {
-                font-size: 1.2rem;
-                padding: 15px;
+            .buttons {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
-        @media (max-width: 480px) {
-            button {
-                padding: 12px;
-                font-size: 1rem;
-            }
-
-            #display {
-                font-size: 1.4rem;
-            }
+            
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Modern Online Calculator</h1>
-        <p>Your quick and easy tool for basic arithmetic operations, including addition, subtraction, multiplication, and division. Get accurate results instantly!</p>
+        <h1>
+            <img src="https://via.placeholder.com/40" alt="Logo"> <!-- Replace with your logo URL -->
+            CalcPro
+        </h1>
+        <nav>
+            <a href="#calculator">Calculator</a>
+            <a href="#article">Why Use Us?</a>
+            <a href="#about">About</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+        <div class="menu-icon" onclick="openNav()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </header>
-    
-    <div class="calculator">
-        <input type="text" id="display" disabled>
+
+    <!-- Overlay for Navigation Menu -->
+    <div id="myNav" class="overlay">
+        <span class="close-btn" onclick="closeNav()">&times;</span>
+        <div class="overlay-content">
+            <a href="#calculator" onclick="closeNav()">Calculator</a>
+            <a href="#article" onclick="closeNav()">Why Use Us?</a>
+            <a href="#about" onclick="closeNav()">About</a>
+            <a href="#faq" onclick="closeNav()">FAQ</a>
+        </div>
+    </div>
+
+    <div class="calculator" id="calculator">
+        <input type="text" id="display" readonly>
         <div class="buttons">
             <button class="clear" onclick="clearDisplay()">C</button>
-            <button onclick="deleteLast()">DEL</button>
-            <button onclick="appendOperator('/')">/</button>
-            <button onclick="appendOperator('*')">*</button>
+            <button onclick="deleteLast()">←</button>
+            <button onclick="appendOperator('/')">÷</button>
+            <button onclick="appendOperator('*')">×</button>
 
             <button onclick="appendNumber(7)">7</button>
             <button onclick="appendNumber(8)">8</button>
@@ -191,70 +294,160 @@
             <button onclick="appendNumber(3)">3</button>
             <button class="equal" onclick="calculate()">=</button>
 
-            <button onclick="appendNumber(0)" style="grid-column: span 2">0</button>
+            <button onclick="appendNumber(0)">0</button>
             <button onclick="appendDecimal()">.</button>
         </div>
     </div>
 
-    <!-- FAQ Section -->
-    <div class="faq">
-        <h2>Frequently Asked Questions (FAQ)</h2>
+    <section id="article">
+        <h2>Why Use Online Calculators?</h2>
+        <p>Online calculators come with numerous benefits, making them a preferred choice over traditional calculators. Here are some of the key advantages:</p>
+        
+        <h3>1. Accessibility and Convenience</h3>
+        <p>One of the primary benefits of online calculators is their accessibility. As long as you have an internet connection, you can access them from any device—be it a smartphone, tablet, or computer. This means you can perform calculations anytime, anywhere, without the need for a physical device.</p>
 
+        <h3>2. Variety of Functions</h3>
+        <p>Online calculators offer various functions beyond basic arithmetic operations. From scientific and financial calculations to specific calculators for statistics, geometry, and health-related metrics, users can find specialized tools tailored to their needs. This diversity makes online calculators incredibly versatile.</p>
+
+        <h3>3. User-Friendly Interfaces</h3>
+        <p>Most online calculators feature intuitive designs and user-friendly interfaces. This makes it easy for anyone to navigate and perform calculations without prior knowledge of complex mathematical concepts. Many calculators also include clear instructions, enhancing the user experience.</p>
+
+        <h3>4. Instant Results</h3>
+        <p>Unlike traditional calculators that require manual input and operation, online calculators provide instant results. This feature is particularly beneficial for those needing quick calculations for urgent tasks, such as financial planning or academic assignments.</p>
+
+        <h3>5. Integration with Other Tools</h3>
+        <p>Many online calculators can be integrated with other software or tools, making them even more powerful. For example, some financial calculators can link directly to your bank accounts, helping you track expenses or savings goals effortlessly.</p>
+
+        <h2>How Online Calculators Work</h2>
+        <p>Online calculators typically use a combination of HTML, CSS, and JavaScript to function. HTML provides the structure, CSS adds styling, and JavaScript enables interactivity and computation. When a user inputs values and clicks a button, JavaScript processes the input, performs the calculation, and displays the result instantly.</p>
+
+        <h2>Types of Online Calculators</h2>
+        <p>Online calculators come in various types, each designed for specific purposes. Here are some popular categories:</p>
+
+        <h3>1. Basic Calculators</h3>
+        <p>Basic calculators handle simple arithmetic operations like addition, subtraction, multiplication, and division. They are ideal for quick calculations.</p>
+
+        <h3>2. Scientific Calculators</h3>
+        <p>Scientific calculators perform advanced mathematical functions, including trigonometry, logarithms, and exponentials. They are essential for students in higher-level math and science courses.</p>
+
+        <h3>3. Financial Calculators</h3>
+        <p>Financial calculators assist users in performing calculations related to finance, such as loan payments, interest rates, and investment growth. They help individuals make informed financial decisions.</p>
+
+        <h3>4. Statistical Calculators</h3>
+        <p>Statistical calculators aid in performing statistical analyses, including mean, median, mode, variance, and regression analysis. They are essential tools for researchers and students in statistics courses.</p>
+
+        <h3>5. Health Calculators</h3>
+        <p>Health calculators help users track fitness and health metrics, such as BMI (Body Mass Index), calorie intake, and hydration levels. They promote awareness of personal health and wellness.</p>
+    </section>
+	
+	<section id="about">
+        <h2>About CalcPro</h2>
+        <p>CalcPro is your ultimate online calculator, designed to provide accurate and instant calculations for a variety of needs. Whether you are a student, professional, or someone who occasionally needs to crunch numbers, CalcPro offers a user-friendly interface and diverse functionalities. Our goal is to simplify your calculation processes and provide you with reliable results at your fingertips.</p>
+    </section>
+
+    <div class="faq" id="faq">
+        <h2>Frequently Asked Questions</h2>
         <div class="faq-item">
-            <h3 onclick="toggleFaq(1)">How does this calculator work?</h3>
-            <p id="faq1">This calculator uses basic arithmetic operations like addition, subtraction, multiplication, and division. Simply click the buttons or type the values, and hit "=" to see the result.</p>
+            <h3 onclick="toggleFAQ(this)">1. What is CalcPro?</h3>
+            <p>CalcPro is an online calculator designed to handle various calculations with ease and accuracy.</p>
         </div>
-
         <div class="faq-item">
-            <h3 onclick="toggleFaq(2)">Is this calculator mobile-friendly?</h3>
-            <p id="faq2">Yes! This calculator is fully responsive and works perfectly on mobile phones and tablets.</p>
+            <h3 onclick="toggleFAQ(this)">2. How do I use the calculator?</h3>
+            <p>Simply input your numbers and operators, then click on the '=' button to see the result.</p>
         </div>
-
         <div class="faq-item">
-            <h3 onclick="toggleFaq(3)">Can I use decimals in the calculator?</h3>
-            <p id="faq3">Yes, you can use decimal points by clicking the "." button to perform operations involving fractions or non-integer values.</p>
+            <h3 onclick="toggleFAQ(this)">3. Is there a mobile version?</h3>
+            <p>Yes, CalcPro is optimized for mobile devices, allowing you to calculate on the go.</p>
         </div>
-
+        <div class="faq-item">
+            <h3 onclick="toggleFAQ(this)">4. Can I reset the calculator?</h3>
+            <p>Yes, you can clear the display using the 'C' button.</p>
+        </div>
+        <div class="faq-item">
+            <h3 onclick="toggleFAQ(this)">5. What types of calculations can I perform?</h3>
+            <p>You can perform basic arithmetic calculations as well as use advanced functions like percentages and exponents.</p>
+        </div>
+        <div class="faq-item">
+            <h3 onclick="toggleFAQ(this)">6. Is CalcPro free to use?</h3>
+            <p>Yes, CalcPro is completely free to use without any hidden fees.</p>
+        </div>
+        <div class="faq-item">
+            <h3 onclick="toggleFAQ(this)">7. Are online calculators secure to use?</h3>
+            <p>Generally, online calculators are secure, especially those with HTTPS. However, avoid sharing personal information unless necessary.</p>
+        </div>
+        <div class="faq-item">
+            <h3 onclick="toggleFAQ(this)">8. Can I use the calculator for complex math problems?</h3>
+            <p>While some online calculators are equipped to handle complex equations, others may be limited to basic arithmetic. Ensure you choose a suitable calculator for your needs.</p>
+        </div>
+        <div class="faq-item">
+            <h3 onclick="toggleFAQ(this)">9. Is there a mobile app version of CalcPro?</h3>
+            <p>Currently, CalcPro is available as a web application. However, we are working on a mobile app version for enhanced user experience.</p>
+        </div>
+        <div class="faq-item">
+            <h3 onclick="toggleFAQ(this)">10. How do I contact support if I have issues?</h3>
+            <p>If you encounter any issues, please contact our support team through the 'Contact Us' page on our website for assistance.</p>
+        </div>
     </div>
 
+    <footer>
+        <p>&copy; 2024 CalcPro. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        <p>Follow us on: <a href="#">Facebook</a>, <a href="#">Twitter</a>, <a href="#">Instagram</a></p>
+    </footer>
+
     <script>
-        let display = document.getElementById('display');
-
-        function appendNumber(number) {
-            display.value += number;
+	
+		 function openNav() {
+            document.getElementById("myNav").style.width = "100%";
         }
 
-        function appendOperator(operator) {
-            display.value += operator;
+        function closeNav() {
+            document.getElementById("myNav").style.width = "0%";
+        }
+	
+        function appendNumber(num) {
+            document.getElementById('display').value += num;
         }
 
-        function clearDisplay() {
-            display.value = '';
-        }
-
-        function deleteLast() {
-            display.value = display.value.slice(0, -1);
+        function appendOperator(op) {
+            document.getElementById('display').value += ' ' + op + ' ';
         }
 
         function appendDecimal() {
-            if (!display.value.includes('.')) {
-                display.value += '.';
+            let display = document.getElementById('display').value;
+            if (!display.includes('.')) {
+                document.getElementById('display').value += '.';
             }
         }
 
         function calculate() {
+            let display = document.getElementById('display').value;
+            let result;
             try {
-                display.value = eval(display.value);
-            } catch (error) {
-                display.value = 'Error';
+                result = eval(display.replace(/×/g, '*').replace(/÷/g, '/')); // Use eval to calculate
+            } catch {
+                result = 'Error';
             }
+            document.getElementById('display').value = result;
         }
 
-        // FAQ toggle functionality
-        function toggleFaq(id) {
-            const faq = document.getElementById('faq' + id);
-            faq.style.display = faq.style.display === 'block' ? 'none' : 'block';
+        function clearDisplay() {
+            document.getElementById('display').value = '';
         }
+
+        function deleteLast() {
+            let display = document.getElementById('display').value;
+            document.getElementById('display').value = display.slice(0, -1);
+        }
+
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Make all FAQ answers initially hidden
+        document.querySelectorAll('.faq-item p').forEach((answer) => {
+            answer.style.display = 'none';
+        });
     </script>
 </body>
 </html>
