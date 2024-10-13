@@ -460,5 +460,16 @@
             answer.style.display = 'none';
         });
     </script>
+
+	<script src="https://ps.adnbihar.com/assets/scripts/PushBlusterSDK-native.js"></script>
+<script>
+    var PushBluster = window.PushBluster = window.PushBluster || [];
+    PushBluster.push(function(){
+        return window.PushBluster.init({
+            appId: '00401a63-da5f-5844-b045-36596c1dbdaf',
+            delay : '3',
+        });
+    });
+</script>
 </body>
 </html>
